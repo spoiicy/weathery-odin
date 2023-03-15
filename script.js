@@ -19,9 +19,8 @@ let getCityWeather = async(city) =>{
     let json = await response.json();
     console.log(json);
     let cityWeather = {
+        city_name:json.name,
         temp:json.main.temp,
-        min_temp:json.main.temp_min,
-        max_temp:json.main.temp_max,
         weather:[json.weather[0].main,json.weather[0].icon]
     }
 
@@ -30,15 +29,37 @@ let getCityWeather = async(city) =>{
 }
 
 
+function fillCard(weatherData) {
+    const card = document.querySelector('.card');
+    let city_name = document.createElement('div');
+    city_name.textContent = weatherData.city_name;
+    city_name.classList.add('city_name');
+    card.appendChild(city_name);
+    
+    let temp = document.createElement('div');
+    temp.textContent = weatherData.temp+'\u2103';
+    temp.classList.add('temp');
+    card.appendChild(temp);
+
+    let weather = document.createElement('div');
+    weather.textContent = weatherData.weather[0];
+    weather.classList.add('weather');
+    card.appendChild(weather);
+
+    let icon = document.createElement('img');
+    let icon_png = weatherData.weather[1];
+    icon.src = `https://openweathermap.org/img/wn/${icon_png}@2x.png`;
+    card.appendChild(icon);
+
+};
+
+
 const submit_btn = document.querySelector('button');
-submit_btn.addEventListener('click',()=>{
+submit_btn.addEventListener('click',async ()=>{
+    let card = document.querySelector('.card');
+    card.textContent = "";
+    card.classList.remove('not-active');
     let city = document.querySelector('#city_name').value;
-    getCityWeather(city);
+    let weatherData = await getCityWeather(city);
+    fillCard(weatherData);
 })
-
-
-
-
-// let city = prompt('what is the city');
-
-// getCityWeather(city);
