@@ -4,10 +4,16 @@
 *{
     padding:0px;
     margin: 0px;
+    font-family: 'Tilt Warp', cursive;
     /* border: solid red 2px; */
 }
 
-
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
 
 body{
     display: grid;
@@ -23,7 +29,7 @@ body{
     background-color:  #a7f3d0;
     font-size: 40px;
     color: #065f46;
-    font-family: 'Tilt Warp', cursive;
+    
     /* gap: 10px; */
     padding:30px 0px;
 }
@@ -55,14 +61,38 @@ form{
 
 form > *{
     border-radius: 4px;
+    border: 2px solid transparent;
+    font-size: medium;
 }
 
 .card{
     background-color: #a7f3d0;
-    height: 400px;
-    width: 400px;
+    height: 450px;
+    width: 450px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    /* justify-content: space-evenly; */
+    align-items: center;
+    /* padding: 20px 0px; */
 }
 
 
+.city_name{
+    padding-top: 40px;
+    font-size: 65px;
+}
 
+.temp{
+    font-size: 50px;
+}
+
+.weather{
+    font-size: 20px;
+}
+
+
+.not-active{
+    display: none;
+}
